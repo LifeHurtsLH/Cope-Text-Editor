@@ -1,0 +1,94 @@
+﻿<Application x:Class="LeafCope.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!-- Dracula Theme Colors -->
+        <SolidColorBrush x:Key="DraculaBackground" Color="#282a36" />
+        <SolidColorBrush x:Key="DraculaForeground" Color="#f8f8f2" />
+        <SolidColorBrush x:Key="DraculaAccent" Color="#ff79c6" />
+        <SolidColorBrush x:Key="DraculaSelection" Color="#44475a" />
+        <SolidColorBrush x:Key="DraculaComment" Color="#6272a4" />
+        <SolidColorBrush x:Key="DraculaCyan" Color="#8be9fd" />
+        <SolidColorBrush x:Key="DraculaGreen" Color="#50fa7b" />
+        <SolidColorBrush x:Key="DraculaOrange" Color="#ffb86c" />
+        <SolidColorBrush x:Key="DraculaPink" Color="#ff79c6" />
+        <SolidColorBrush x:Key="DraculaPurple" Color="#bd93f9" />
+        <SolidColorBrush x:Key="DraculaRed" Color="#ff5555" />
+        <SolidColorBrush x:Key="DraculaYellow" Color="#f1fa8c" />
+
+        <!-- Dracula Theme Styles -->
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="{StaticResource DraculaBackground}" />
+            <Setter Property="Foreground" Value="{StaticResource DraculaForeground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource DraculaSelection}" />
+        </Style>
+        
+        <!-- Dracula Theme ScrollbarThumb -->
+        <Style x:Key="ScrollBarThumbStyle" TargetType="Thumb">
+            <Setter Property="Background" Value="{StaticResource DraculaSelection}" />
+            <Setter Property="BorderBrush" Value="{StaticResource DraculaForeground}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Width" Value="8" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Dracula Theme Scrollbar Repeat Button -->
+        <Style x:Key="ScrollBarRepeatButtonStyle" TargetType="RepeatButton">
+            <Setter Property="Background" Value="{StaticResource DraculaBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource DraculaBackground}" />
+            <Setter Property="Foreground" Value="{StaticResource DraculaForeground}" />
+            <Setter Property="Width" Value="10" />
+            <Setter Property="Height" Value="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Dracula Theme Scrollbar -->
+        <Style TargetType="ScrollBar">
+            <Setter Property="Width" Value="10" />
+            <Setter Property="Background" Value="{StaticResource DraculaBackground}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid>
+                            <Track x:Name="PART_Track"
+                                   IsDirectionReversed="true">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Style="{StaticResource ScrollBarRepeatButtonStyle}" Command="{x:Static ScrollBar.LineUpCommand}"  />
+                                </Track.DecreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Style="{StaticResource ScrollBarThumbStyle}" />
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Style="{StaticResource ScrollBarRepeatButtonStyle}" Command="{x:Static ScrollBar.LineDownCommand}"/>
+                                </Track.IncreaseRepeatButton>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Add more styles for other UI elements as needed can be compatible with multiple themes atm just using dracula feel free to do whatever -->
+        <FontFamily x:Key="EditorFontFamily">Consolas, 'Courier New', monospace</FontFamily>
+    </Application.Resources>
+</Application>

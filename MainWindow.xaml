@@ -1,0 +1,105 @@
+﻿<Window x:Class="LeafCope.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avalonEdit="http://schemas.icsharpcode.net/sharpdevelop/avalonedit"
+        xmlns:local="clr-namespace:LeafCope"
+        mc:Ignorable="d"
+        Title="Leaf Editor" Width="640" Height="480"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        Background="{DynamicResource DraculaBackground}"
+        Foreground="{DynamicResource DraculaForeground}">
+
+    <Window.Resources>
+        <!-- Define a style for the window without the resize grip and with a custom borderless style -->
+        <Style x:Key="WindowStyleWithoutResizeGrip" TargetType="Window">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
+                    <!-- Increased thickness cant find the sweetspot but 5 seems fine atm -->
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Window">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{DynamicResource DraculaBackground}"
+                                BorderThickness="1">
+                            <!-- ContentPresenter to display the window content -->
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <!-- Window Style -->
+    <Window.Style>
+        <StaticResource ResourceKey="WindowStyleWithoutResizeGrip"/>
+    </Window.Style>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Bar -->
+        <Grid x:Name="TitleBar" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+            <TextBlock Text="Leaf Editor"
+                       Foreground="{DynamicResource DraculaForeground}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Consolas, 'Courier New', monospace"
+                       Cursor="Hand"/>
+        </Grid>
+
+        <!-- Quit -->
+        <TextBlock x:Name="QuitText"
+                   Text="Quit"
+                   Foreground="{DynamicResource DraculaForeground}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   Margin="5"
+                   FontFamily="Consolas, 'Courier New', monospace"
+                   MouseDown="QuitText_MouseDown"
+                   Cursor="Hand"
+                   Grid.Row="0"/>
+
+        <!-- Separator Line -->
+        <Separator Grid.Row="1"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Stretch"
+                   Background="{DynamicResource DraculaForeground}"
+                   Margin="5"/>
+
+        <!-- Files Text -->
+        <TextBlock x:Name="FilesText"
+                   Text="Files"
+                   Foreground="{DynamicResource DraculaForeground}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Margin="10,5,5,5"
+                   FontFamily="Consolas, 'Courier New', monospace"
+                   MouseDown="FilesText_MouseDown"
+                   Cursor="Hand"
+                   Grid.Row="0"/>
+
+        <!-- Text Editor -->
+        <local:CustomTextEditor
+            x:Name="textEditor"
+            Grid.Row="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            FontFamily="{StaticResource EditorFontFamily}"
+            Foreground="{DynamicResource DraculaForeground}"
+            Background="{DynamicResource DraculaBackground}"
+            FontSize="12"
+            WordWrap="True"
+            Padding="5"/>
+    </Grid>
+</Window>
