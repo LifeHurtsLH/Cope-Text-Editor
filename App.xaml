@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!-- Dracula Theme Colors -->
         <SolidColorBrush x:Key="DraculaBackground" Color="#282a36" />
         <SolidColorBrush x:Key="DraculaForeground" Color="#f8f8f2" />
         <SolidColorBrush x:Key="DraculaAccent" Color="#ff79c6" />
@@ -17,14 +16,12 @@
         <SolidColorBrush x:Key="DraculaRed" Color="#ff5555" />
         <SolidColorBrush x:Key="DraculaYellow" Color="#f1fa8c" />
 
-        <!-- Dracula Theme Styles -->
         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Background" Value="{StaticResource DraculaBackground}" />
             <Setter Property="Foreground" Value="{StaticResource DraculaForeground}" />
             <Setter Property="BorderBrush" Value="{StaticResource DraculaSelection}" />
         </Style>
         
-        <!-- Dracula Theme ScrollbarThumb -->
         <Style x:Key="ScrollBarThumbStyle" TargetType="Thumb">
             <Setter Property="Background" Value="{StaticResource DraculaSelection}" />
             <Setter Property="BorderBrush" Value="{StaticResource DraculaForeground}" />
@@ -41,7 +38,6 @@
             </Setter>
         </Style>
 
-        <!-- Dracula Theme Scrollbar Repeat Button -->
         <Style x:Key="ScrollBarRepeatButtonStyle" TargetType="RepeatButton">
             <Setter Property="Background" Value="{StaticResource DraculaBackground}" />
             <Setter Property="BorderBrush" Value="{StaticResource DraculaBackground}" />
@@ -62,7 +58,6 @@
             </Setter>
         </Style>
 
-        <!-- Dracula Theme Scrollbar -->
         <Style TargetType="ScrollBar">
             <Setter Property="Width" Value="10" />
             <Setter Property="Background" Value="{StaticResource DraculaBackground}" />

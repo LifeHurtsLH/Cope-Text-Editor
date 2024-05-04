@@ -9,7 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Themes\Dracula.xshd" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="boo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Themes\Dracula.xshd" />
   </ItemGroup>
 
   <ItemGroup>
