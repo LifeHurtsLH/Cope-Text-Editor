@@ -13,6 +13,18 @@
         Foreground="{DynamicResource DraculaForeground}">
 
     <Window.Resources>
+        <!-- Define style for CustomTextEditor -->
+        <Style TargetType="local:CustomTextEditor">
+            <Setter Property="FontFamily" Value="{StaticResource EditorFontFamily}" />
+            <Setter Property="Foreground" Value="{DynamicResource DraculaForeground}" />
+            <Setter Property="Background" Value="{DynamicResource DraculaBackground}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="WordWrap" Value="True" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+
+
         <Style x:Key="WindowStyleWithoutResizeGrip" TargetType="Window">
             <Setter Property="WindowChrome.WindowChrome">
                 <Setter.Value>
@@ -81,16 +93,40 @@
                    Cursor="Hand"
                    Grid.Row="0"/>
 
-        <local:CustomTextEditor 
-            x:Name="textEditor"
-            Grid.Row="2"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            FontFamily="{StaticResource EditorFontFamily}"
-            Foreground="{DynamicResource DraculaForeground}"
-            Background="{DynamicResource DraculaBackground}"
-            FontSize="12"
-            WordWrap="True"
-            Padding="5"/>
+        <TabControl Grid.Row="2" x:Name="tabControl">
+            <TabControl.Resources>
+ 
+                <Style TargetType="TabControl">
+                    <Setter Property="Background" Value="{DynamicResource DraculaBackground}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource DraculaBackground}"/>
+                </Style>
+
+                <Style TargetType="TabItem">
+                    <Setter Property="Background" Value="{DynamicResource DraculaBackground}" />
+                    <Setter Property="Foreground" Value="{DynamicResource DraculaForeground}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource DraculaBackground}" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="5" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border x:Name="border"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter ContentSource="Header" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource DraculaSelection}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+        </TabControl>
     </Grid>
 </Window>
