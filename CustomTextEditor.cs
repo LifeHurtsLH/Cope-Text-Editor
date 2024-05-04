@@ -1,10 +1,12 @@
 ﻿using System;
+using System.IO;
+using System.Windows;
+using System.Reflection;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit;
-using System.IO;
-using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using System.Xml;
 using System.Windows.Media;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 
 namespace LeafCope
 {
@@ -12,19 +14,25 @@ namespace LeafCope
     {
         public CustomTextEditor()
         {
-            // Get the base directory of the application
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            // Get the assembly that contains the embedded resource
+            Assembly assembly = Assembly.GetExecutingAssembly();
 
-            // Construct the full path to the Dracula XSHD file using relative path
-            string relativePath = @"..\..\..\Themes\Dracula.xshd";
-            string fullPath = Path.GetFullPath(Path.Combine(baseDirectory, relativePath));
+            // Define the resource name (namespace + filename)
+            string resourceName = "LeafCope.Themes.Dracula.xshd";
 
-            // Load the Dracula XSHD file from the relative path
-            using (var stream = File.OpenRead(fullPath))
+            // Load the resource stream
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             {
-                using (var reader = new XmlTextReader(stream))
+                if (stream != null)
                 {
-                    SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
+                    using (var reader = new XmlTextReader(stream))
+                    {
+                        SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Dracula XSHD resource not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 

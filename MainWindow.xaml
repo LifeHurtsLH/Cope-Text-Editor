@@ -13,12 +13,10 @@
         Foreground="{DynamicResource DraculaForeground}">
 
     <Window.Resources>
-        <!-- Define a style for the window without the resize grip and with a custom borderless style -->
         <Style x:Key="WindowStyleWithoutResizeGrip" TargetType="Window">
             <Setter Property="WindowChrome.WindowChrome">
                 <Setter.Value>
                     <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
-                    <!-- Increased thickness cant find the sweetspot but 5 seems fine atm -->
                 </Setter.Value>
             </Setter>
             <Setter Property="Template">
@@ -27,7 +25,6 @@
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{DynamicResource DraculaBackground}"
                                 BorderThickness="1">
-                            <!-- ContentPresenter to display the window content -->
                             <ContentPresenter/>
                         </Border>
                     </ControlTemplate>
@@ -36,7 +33,6 @@
         </Style>
     </Window.Resources>
 
-    <!-- Window Style -->
     <Window.Style>
         <StaticResource ResourceKey="WindowStyleWithoutResizeGrip"/>
     </Window.Style>
@@ -48,7 +44,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Title Bar -->
         <Grid x:Name="TitleBar" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
             <TextBlock Text="Leaf Editor"
                        Foreground="{DynamicResource DraculaForeground}"
@@ -58,7 +53,6 @@
                        Cursor="Hand"/>
         </Grid>
 
-        <!-- Quit -->
         <TextBlock x:Name="QuitText"
                    Text="Quit"
                    Foreground="{DynamicResource DraculaForeground}"
@@ -70,14 +64,12 @@
                    Cursor="Hand"
                    Grid.Row="0"/>
 
-        <!-- Separator Line -->
         <Separator Grid.Row="1"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Stretch"
                    Background="{DynamicResource DraculaForeground}"
                    Margin="5"/>
 
-        <!-- Files Text -->
         <TextBlock x:Name="FilesText"
                    Text="Files"
                    Foreground="{DynamicResource DraculaForeground}"
@@ -89,8 +81,7 @@
                    Cursor="Hand"
                    Grid.Row="0"/>
 
-        <!-- Text Editor -->
-        <local:CustomTextEditor
+        <local:CustomTextEditor 
             x:Name="textEditor"
             Grid.Row="2"
             HorizontalAlignment="Stretch"
