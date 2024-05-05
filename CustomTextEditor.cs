@@ -35,7 +35,7 @@ namespace LeafCope
 
             // for future me (you are 0iq if you need a comment here again)
             FontFamily = new FontFamily("Consolas");
-            FontSize = 10;
+            FontSize = 12;
         }
     }
 }

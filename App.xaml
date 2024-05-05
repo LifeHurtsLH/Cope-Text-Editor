@@ -83,6 +83,49 @@
             </Setter>
         </Style>
 
+        <Style x:Key="DraculaContextMenuStyle" TargetType="ContextMenu">
+            <Setter Property="Background" Value="{DynamicResource DraculaBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource DraculaForeground}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContextMenu">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0">
+                            <StackPanel Margin="0">
+                                <ItemsPresenter />
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Background" Value="{DynamicResource DraculaBackground}" />
+                        <Setter Property="Foreground" Value="{DynamicResource DraculaForeground}" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="MenuItem">
+                                    <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="0"
+                                    Padding="15, 5, 15,5"
+                                    Margin="5">
+                                        <ContentPresenter Content="{TemplateBinding Header}" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource DraculaSelection}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!-- Add more styles for other UI elements as needed can be compatible with multiple themes atm just using dracula feel free to do whatever -->
         <FontFamily x:Key="EditorFontFamily">Consolas, 'Courier New', monospace</FontFamily>
     </Application.Resources>

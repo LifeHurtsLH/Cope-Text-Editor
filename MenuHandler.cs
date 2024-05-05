@@ -17,9 +17,10 @@ namespace LeafCope
 
         public void FilesText_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            // Create a new context menu
             ContextMenu contextMenu = new ContextMenu();
 
+            // Create menu items
             MenuItem newItem = new MenuItem();
             newItem.Header = "New";
             newItem.Click += NewItem_Click;
@@ -40,9 +41,14 @@ namespace LeafCope
             saveAsItem.Click += SaveAsItem_Click;
             contextMenu.Items.Add(saveAsItem);
 
-            contextMenu.IsOpen = true;
-        }
+            contextMenu.Style = (Style)Application.Current.FindResource("DraculaContextMenuStyle");
 
+            if (sender is TextBlock textBlock)
+            {
+                ContextMenuService.SetContextMenu(textBlock, contextMenu);
+                contextMenu.IsOpen = true; 
+            }
+        }
         public void NewItem_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.NewTab(null);

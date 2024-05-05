@@ -29,8 +29,19 @@ namespace LeafCope
 
                 }
             };
-
             KeyDown += MainWindow_KeyDown;
+            CreateStartupGuideTab();
+        }
+
+        private void CreateStartupGuideTab()
+        {
+            TabItem startupGuideTab = new TabItem();
+            CustomTextEditor startupGuideEditor = new CustomTextEditor();
+            startupGuideEditor.Text = StartupGuide.GetStartupGuideText();
+            startupGuideTab.Header = "Startup Guide";
+            startupGuideTab.Content = startupGuideEditor;
+            tabControl.Items.Add(startupGuideTab);
+            tabControl.SelectedItem = startupGuideTab;
         }
 
         private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -65,6 +76,7 @@ namespace LeafCope
             tabControl.Items.Add(tabItem);
             tabControl.SelectedItem = tabItem;
         }
+
         public void LoadFileContent(string filePath)
         {
             if (File.Exists(filePath))
@@ -80,6 +92,7 @@ namespace LeafCope
                 }
             }
         }
+
         public void SaveFileContent(TabInfo tabInfo)
         {
             if (tabInfo != null && !string.IsNullOrEmpty(tabInfo.FilePath))
@@ -144,6 +157,9 @@ namespace LeafCope
                         break;
                     case Key.W:
                         menuHandler.CloseTab();
+                        break;
+                    case Key.Q:
+                        QuitText_MouseDown(null, null);
                         break;
                 }
             }
