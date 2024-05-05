@@ -13,7 +13,7 @@
         Foreground="{DynamicResource DraculaForeground}">
 
     <Window.Resources>
-        <!-- Define style for CustomTextEditor -->
+
         <Style TargetType="local:CustomTextEditor">
             <Setter Property="FontFamily" Value="{StaticResource EditorFontFamily}" />
             <Setter Property="Foreground" Value="{DynamicResource DraculaForeground}" />

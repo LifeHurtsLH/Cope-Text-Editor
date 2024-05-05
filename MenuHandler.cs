@@ -17,10 +17,9 @@ namespace LeafCope
 
         public void FilesText_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // Create a context menu
+
             ContextMenu contextMenu = new ContextMenu();
 
-            // Add menu items
             MenuItem newItem = new MenuItem();
             newItem.Header = "New";
             newItem.Click += NewItem_Click;
@@ -41,16 +40,15 @@ namespace LeafCope
             saveAsItem.Click += SaveAsItem_Click;
             contextMenu.Items.Add(saveAsItem);
 
-            // Show the context menu
             contextMenu.IsOpen = true;
         }
 
-        private void NewItem_Click(object sender, RoutedEventArgs e)
+        public void NewItem_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.NewTab(null);
         }
 
-        private void OpenItem_Click(object sender, RoutedEventArgs e)
+        public void OpenItem_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
@@ -61,39 +59,63 @@ namespace LeafCope
                 mainWindow.LoadFileContent(filePath);
             }
         }
-
         public void SaveItem_Click(object sender, RoutedEventArgs e)
         {
             if (mainWindow.tabControl.SelectedItem != null)
             {
                 TabItem selectedTab = (TabItem)mainWindow.tabControl.SelectedItem;
-                string filePath = mainWindow.CurrentFilePath;
-
-                if (!string.IsNullOrEmpty(filePath))
+                TabInfo tabInfo = (TabInfo)selectedTab.Tag;
+                if (tabInfo != null)
                 {
-                    File.WriteAllText(filePath, ((CustomTextEditor)selectedTab.Content).Text);
+                    if (string.IsNullOrEmpty(tabInfo.FilePath))
+                    {
+                        SaveTextAs();
+                        return;
+                    }
+                    else
+                    {
+                        SaveText(selectedTab);
+                    }
                 }
                 else
                 {
-                    SaveText();
+                    MessageBox.Show("TabInfo is null.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
             }
         }
-        private void SaveText()
+
+        public void SaveText(TabItem tabItem)
         {
-            if (mainWindow.tabControl.SelectedItem != null)
-            {
-                TabItem selectedTab = (TabItem)mainWindow.tabControl.SelectedItem;
-                string filePath = mainWindow.CurrentFilePath;
+            TabInfo tabInfo = (TabInfo)tabItem.Tag;
 
-                if (!string.IsNullOrEmpty(filePath))
+            if (tabInfo != null && !string.IsNullOrEmpty(tabInfo.FilePath))
+            {
+
+                File.WriteAllText(tabInfo.FilePath, ((CustomTextEditor)tabItem.Content).Text);
+                mainWindow.CurrentFilePath = tabInfo.FilePath;
+            }
+            else
+            {
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                if (saveFileDialog.ShowDialog() == true)
                 {
-                    File.WriteAllText(filePath, ((CustomTextEditor)selectedTab.Content).Text);
+                    string filePath = saveFileDialog.FileName;
+                    File.WriteAllText(filePath, ((CustomTextEditor)tabItem.Content).Text);
+                    mainWindow.CurrentFilePath = filePath;
+
+                    if (tabInfo == null)
+                    {
+                        tabInfo = new TabInfo();
+                        tabItem.Tag = tabInfo;
+                    }
+                    tabInfo.FilePath = filePath;
                 }
             }
         }
 
-        private void SaveAsItem_Click(object sender, RoutedEventArgs e)
+        public void SaveAsItem_Click(object sender, RoutedEventArgs e)
         {
             SaveTextAs();
         }
@@ -121,6 +143,15 @@ namespace LeafCope
                 string filePath = saveFileDialog.FileName;
                 File.WriteAllText(filePath, ((CustomTextEditor)((TabItem)mainWindow.tabControl.SelectedItem).Content).Text);
                 mainWindow.CurrentFilePath = filePath;
+            }
+        }
+
+        public void CloseTab()
+        {
+            if (mainWindow.tabControl.SelectedItem != null)
+            {
+                TabItem selectedTab = (TabItem)mainWindow.tabControl.SelectedItem;
+                mainWindow.tabControl.Items.Remove(selectedTab);
             }
         }
     }

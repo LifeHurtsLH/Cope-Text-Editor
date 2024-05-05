@@ -14,13 +14,10 @@ namespace LeafCope
     {
         public CustomTextEditor()
         {
-            // Get the assembly that contains the embedded resource
             Assembly assembly = Assembly.GetExecutingAssembly();
 
-            // Define the resource name (namespace + filename)
             string resourceName = "LeafCope.Themes.Dracula.xshd";
 
-            // Load the resource stream
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             {
                 if (stream != null)
@@ -36,7 +33,7 @@ namespace LeafCope
                 }
             }
 
-            // Add any other customizations or configurations here
+            // for future me (you are 0iq if you need a comment here again)
             FontFamily = new FontFamily("Consolas");
             FontSize = 10;
         }
