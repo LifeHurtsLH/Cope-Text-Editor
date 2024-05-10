@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Text;
 
 namespace LeafCope
@@ -14,10 +14,12 @@ namespace LeafCope
                 " Shortcuts:",
                 " Ctrl + S: Save",
                 " Ctrl + Shift + S: Save As",
-                " Ctrl + O: Open",
+                " Ctrl + E: Open",
                 " Ctrl + N: New Tab",
                 " Ctrl + W: Close Tab",
                 " Ctrl + Q: Close Text Editor",
+                " Use Ctrl + tab for Next Tab",
+                " Use Ctrl + shift + tab for Previous Tab",
                 " Warning closing does not save!",
                 "",
                 " Enjoy and use at own risk!"

@@ -1,0 +1,216 @@
+<SyntaxDefinition name="Gruvbox" extensions=".java" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="Comment" foreground="#458588" />
+	<Color name="String" foreground="#b57614" />
+	<Color name="Char" foreground="#d79921" />
+	<Color name="NumberLiteral" foreground="#8ec07c" />
+	<Color name="Keyword" foreground="#fb4934" />
+	<Color name="Operator" foreground="#fb4934" />
+	<Color name="Punctuation" foreground="#8ec07c" />
+	<Color name="Modifier" foreground="#8ec07c" />
+	<Color name="Type" foreground="#f8f8f2" />
+	<Color name="Annotation" foreground="#cc241d" />
+	<Color name="Generic" foreground="#3c3836" />
+
+	<Property name="DocCommentMarker" value="///" />
+
+    <RuleSet>
+        <Span color="Comment">
+            <Begin>/\*</Begin>
+            <End>\*/</End>
+        </Span>
+
+        <Span color="Comment">
+            <Begin>//</Begin>
+        </Span>
+
+        <Span color="String">
+            <Begin>"</Begin>
+            <End>"</End>
+            <RuleSet>
+                <Span begin="\\" end="."/>
+            </RuleSet>
+        </Span>
+
+        <Span color="Char">
+            <Begin>'</Begin>
+            <End>'</End>
+            <RuleSet>
+                <Span begin="\\" end="."/>
+            </RuleSet>
+        </Span>
+
+        <Rule color="NumberLiteral">
+            \b\d+(\.\d+)?(e[+-]?\d+)?\b
+        </Rule>
+
+        <Keywords color="Keyword">
+            <Word>abstract</Word>
+            <Word>assert</Word>
+            <Word>boolean</Word>
+            <Word>break</Word>
+            <Word>byte</Word>
+            <Word>case</Word>
+            <Word>catch</Word>
+            <Word>char</Word>
+            <Word>class</Word>
+            <Word>const</Word>
+            <Word>continue</Word>
+            <Word>default</Word>
+            <Word>do</Word>
+            <Word>double</Word>
+            <Word>else</Word>
+            <Word>enum</Word>
+            <Word>extends</Word>
+            <Word>final</Word>
+            <Word>finally</Word>
+            <Word>float</Word>
+            <Word>for</Word>
+            <Word>if</Word>
+            <Word>implements</Word>
+            <Word>import</Word>
+            <Word>instanceof</Word>
+            <Word>int</Word>
+            <Word>interface</Word>
+            <Word>long</Word>
+            <Word>native</Word>
+            <Word>new</Word>
+            <Word>package</Word>
+            <Word>private</Word>
+            <Word>protected</Word>
+            <Word>public</Word>
+            <Word>return</Word>
+            <Word>short</Word>
+            <Word>static</Word>
+            <Word>strictfp</Word>
+            <Word>super</Word>
+            <Word>switch</Word>
+            <Word>synchronized</Word>
+            <Word>this</Word>
+            <Word>throw</Word>
+            <Word>throws</Word>
+            <Word>transient</Word>
+            <Word>try</Word>
+            <Word>void</Word>
+            <Word>volatile</Word>
+            <Word>while</Word>
+        </Keywords>
+
+        <Keywords color="Modifier">
+            <Word>abstract</Word>
+            <Word>default</Word>
+            <Word>final</Word>
+            <Word>native</Word>
+            <Word>private</Word>
+            <Word>protected</Word>
+            <Word>public</Word>
+            <Word>static</Word>
+            <Word>strictfp</Word>
+            <Word>synchronized</Word>
+            <Word>transient</Word>
+            <Word>volatile</Word>
+        </Keywords>
+
+        <Keywords color="Type">
+            <Word>boolean</Word>
+            <Word>byte</Word>
+            <Word>char</Word>
+            <Word>double</Word>
+            <Word>float</Word>
+            <Word>int</Word>
+            <Word>long</Word>
+            <Word>short</Word>
+            <Word>void</Word>
+        </Keywords>
+
+        <Keywords color="Annotation">
+            <Word>@Deprecated</Word>
+            <Word>@SuppressWarnings</Word>
+        </Keywords>
+
+        <Keywords color="Operator">
+            <Word>+</Word>
+            <Word>-</Word>
+            <Word>*</Word>
+            <Word>/</Word>
+            <Word>%</Word>
+            <Word>&amp;</Word>
+            <Word>|</Word>
+            <Word>^</Word>
+            <Word>&lt;&lt;</Word>
+            <Word>&gt;&gt;</Word>
+            <Word>&gt;&gt;&gt;</Word>
+            <Word>==</Word>
+            <Word>!=</Word>
+            <Word>&lt;</Word>
+            <Word>&gt;</Word>
+            <Word>&lt;=</Word>
+            <Word>&gt;=</Word>
+            <Word>&amp;&amp;</Word>
+            <Word>||</Word>
+            <Word>!</Word>
+            <Word>&amp;=</Word>
+            <Word>|=</Word>
+            <Word>^=</Word>
+            <Word>&lt;&lt;=</Word>
+            <Word>&gt;&gt;=</Word>
+            <Word>&gt;&gt;&gt;=</Word>
+            <Word>&lt;&lt;</Word>
+            <Word>&gt;&gt;</Word>
+            <Word>&lt;&lt;&lt;</Word>
+            <Word>&gt;&gt;&gt;</Word>
+            <Word>&lt;=&gt;</Word>
+            <Word>&lt;</Word>
+            <Word>&gt;</Word>
+            <Word>&lt;=</Word>
+            <Word>&gt;=</Word>
+            <Word>?</Word>
+            <Word>:</Word>
+            <Word>&#43;=</Word>
+            <Word>&#45;=</Word>
+            <Word>&#42;=</Word>
+            <Word>&#47;=</Word>
+            <Word>%=</Word>
+            <Word>&amp;=</Word>
+            <Word>&#124;=</Word>
+            <Word>^=</Word>
+            <Word>&lt;&lt;=</Word>
+            <Word>&gt;&gt;=</Word>
+            <Word>&gt;&gt;&gt;=</Word>
+            <Word>&lt;&lt;</Word>
+            <Word>&gt;&gt;</Word>
+            <Word>&gt;&gt;&gt;</Word>
+            <Word>&lt;=&gt;</Word>
+            <Word>&lt;</Word>
+            <Word>&gt;</Word>
+            <Word>&lt;=</Word>
+            <Word>&gt;=</Word>
+            <Word>!</Word>
+            <Word>instanceof</Word>
+        </Keywords>
+
+        <Rule color="Punctuation">
+            [(),:;{}[\]]
+        </Rule>
+
+        <Rule color="Generic">
+            &lt;[\w\d_]+&gt;
+        </Rule>
+
+        <Rule color="NumberLiteral">
+            \b\d+(\.\d+)?(e[+-]?\d+)?\b
+        </Rule>
+
+		<Rule color="Operator">
+			\+\+|--|==|!=|&amp;&amp;|\|\||\+=|-=|\*=|/=|%=|&amp;=|\|=|\^=|&lt;&lt;=|&gt;&gt;=|&gt;&gt;&gt;=|&lt;&lt;|&gt;&gt;|&gt;&gt;&gt;|&lt;=&gt;|&lt;|&gt;|&lt;=|&gt;=|\?|:|\+=|-=|\*=|/=|%|&amp;|\||\^|~|&amp;&amp;|\|\||!|\+|-|\*|/|&amp;|&lt;|&gt;|!|\binstanceof\b
+		</Rule>
+
+
+		<Rule color="Annotation">
+            @[\w\d_]+
+        </Rule>
+
+        <Rule color="String">
+            "(\\.|[^&quot;\\])*"
+        </Rule>
+    </RuleSet>
+</SyntaxDefinition>

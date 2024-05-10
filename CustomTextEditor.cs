@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.IO;
 using System.Windows;
 using System.Reflection;
@@ -14,11 +14,15 @@ namespace LeafCope
     {
         public CustomTextEditor()
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
+            ApplySyntaxHighlighting("DraculaCS");
+            FontFamily = new FontFamily("Consolas");
+            FontSize = 12;
+        }
 
-            string resourceName = "LeafCope.Themes.Dracula.xshd";
-
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+        public void ApplySyntaxHighlighting(string themeName)
+        {
+            string resourceName = $"LeafCope.Themes.{themeName}.xshd";
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
             {
                 if (stream != null)
                 {
@@ -29,13 +33,9 @@ namespace LeafCope
                 }
                 else
                 {
-                    MessageBox.Show("Dracula XSHD resource not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"{themeName} XSHD resource not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-
-            // for future me (you are 0iq if you need a comment here again)
-            FontFamily = new FontFamily("Consolas");
-            FontSize = 12;
         }
     }
 }

@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Themes\Dracula.xshd" />
+    <None Remove="Themes\DraculaCS.xshd" />
+    <None Remove="Themes\GruvboxJava.xshd" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Themes\Dracula.xshd" />
+    <EmbeddedResource Include="Themes\DraculaCS.xshd" />
+    <EmbeddedResource Include="Themes\GruvboxJava.xshd" />
   </ItemGroup>
 
   <ItemGroup>

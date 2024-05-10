@@ -83,6 +83,16 @@ namespace LeafCope
             {
                 TabItem selectedTab = (TabItem)tabControl.SelectedItem;
                 CustomTextEditor customTextEditor = (CustomTextEditor)selectedTab.Content;
+
+                string fileExtension = Path.GetExtension(filePath);
+                if (fileExtension == ".cs")
+                {
+                    customTextEditor.ApplySyntaxHighlighting("DraculaCS");
+                }
+                else if (fileExtension == ".java")
+                {
+                    customTextEditor.ApplySyntaxHighlighting("GruvboxJava");
+                }
                 customTextEditor.Load(filePath);
 
                 TabInfo tabInfo = (TabInfo)selectedTab.Tag;
@@ -161,8 +171,10 @@ namespace LeafCope
                     case Key.Q:
                         QuitText_MouseDown(null, null);
                         break;
+
                 }
             }
+
         }
     }
 }
